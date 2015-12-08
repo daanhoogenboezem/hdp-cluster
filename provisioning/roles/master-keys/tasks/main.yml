@@ -1,0 +1,46 @@
+- name: create ssh keys directory
+  sudo: false
+  local_action: command mkdir -p roles/master-keys/files
+
+- name: Check if ssh keys directory already exist
+  sudo: false
+  local_action: "stat path=roles/master-keys/files/id_rsa"
+  register: key_status
+
+- name: Generate ssh keys if necessary
+  sudo: false
+  local_action: "command ssh-keygen -t rsa -b 4096 -f roles/master-keys/files/id_rsa -N '' -C 'root@master.locallab.com'"
+  when: not key_status.stat.exists
+
+- name: deploy ssh private key
+  copy: src="roles/master-keys/files/id_rsa" dest="/root/.ssh/" owner=root group=root mode=600
+
+- name: deploy ssh public key
+  copy: src="roles/master-keys/files/id_rsa.pub" dest="/root/.ssh/" owner=root group=root mode=600
+
+- name: setup authorized keys
+  authorized_key: user=root key="{{ item }}"
+  with_file:
+    - roles/master-keys/files/id_rsa.pub
+
+- name: add slave 1 to hostsfile
+  lineinfile: dest=/etc/hosts line="192.168.100.20 slave1.locallab.com"
+
+- name: add slave 2 to hostsfile
+  lineinfile: dest=/etc/hosts line="192.168.100.30 slave2.locallab.com"
+
+- name: download ambari.repo
+  get_url: url=http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.1.2.1/ambari.repo dest=/tmp/ambari.repo mode=0600
+
+- name: add to repo list
+  shell: "cp /tmp/ambari.repo /etc/yum.repos.d/"
+
+- name: install ambari-server
+  yum: state=present name=ambari-server
+
+# - name: Setup server
+#   expect:
+#     command: ambari-server setup
+#     responses:
+#       'Do you accept the Oracle Binary Code License Agreement': 'y'
+#       "Enter advanced database configuration": 'n'

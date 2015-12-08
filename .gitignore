@@ -1,0 +1,3 @@
+provisioning/roles/master-keys/files/id_rsa
+provisioning/roles/master-keys/files/id_rsa.pub
+.vagrant/**

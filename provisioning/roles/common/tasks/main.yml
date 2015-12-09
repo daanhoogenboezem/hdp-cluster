@@ -14,8 +14,11 @@
 - name: Install nmap
   yum: state=present name=nmap
 
-- name: start tnp
+- name: start ntp deamon
   service: name=ntpd state=started
+
+- name: make ntp daemon start on boot
+  shell: chkconfig ntpd on
 
 - name: modify sysctl.conf
   lineinfile: dest=/etc/sysctl.conf line="net.ipv6.conf.all.disable_ipv6 = 1"

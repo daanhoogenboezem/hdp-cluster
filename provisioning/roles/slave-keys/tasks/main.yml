@@ -5,6 +5,3 @@
   authorized_key: user=root key="{{ item }}"
   with_file:
     - roles/master-keys/files/id_rsa.pub
-
-- name: modify hostsfile
-  lineinfile: dest=/etc/hosts line="192.168.100.10 master.locallab.com"

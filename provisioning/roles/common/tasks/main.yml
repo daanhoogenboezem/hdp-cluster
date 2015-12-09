@@ -5,6 +5,15 @@
 - name: Install wget
   yum: state=present name=wget
 
+- name: Install tree
+  yum: state=present name=tree
+
+- name: Install telnet
+  yum: state=present name=telnet
+
+- name: Install nmap
+  yum: state=present name=nmap
+
 - name: start tnp
   service: name=ntpd state=started
 
@@ -22,3 +31,15 @@
 
 - name: disable huge page support
   shell: 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
+
+- name: modify hostsfile
+  lineinfile: dest=/etc/hosts regexp='^127.0.0.1' state=present line="127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4"
+
+- name: modify hostsfile
+  lineinfile: dest=/etc/hosts line="192.168.100.10 master.locallab.com"
+
+- name: modify hostsfile
+  lineinfile: dest=/etc/hosts line="192.168.100.20 slave1.locallab.com"
+
+- name: modify hostsfile
+  lineinfile: dest=/etc/hosts line="192.168.100.30 slave2.locallab.com"

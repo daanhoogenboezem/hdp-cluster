@@ -1,2 +1,0 @@
-- name: modify hostsfile
-  lineinfile: dest=/etc/hosts line="192.168.100.20 slave1.locallab.com"

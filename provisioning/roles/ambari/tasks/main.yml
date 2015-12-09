@@ -1,0 +1,8 @@
+- name: download ambari.repo
+  get_url: url=http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.1.2.1/ambari.repo dest=/tmp/ambari.repo mode=0600
+
+- name: add to repo list
+  shell: "cp /tmp/ambari.repo /etc/yum.repos.d/"
+
+- name: install ambari-server
+  yum: state=present name=ambari-server

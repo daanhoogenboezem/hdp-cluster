@@ -6,13 +6,12 @@
 - hosts: master
   roles:
   - master-keys
+  - ambari
 
 - hosts: slave1
   roles:
   - slave-keys
-  - slave1
 
 - hosts: slave2
   roles:
   - slave-keys
-  - slave2

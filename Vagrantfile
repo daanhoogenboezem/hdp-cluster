@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
 
     master.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--name", "master.locallab.com"]
-      vb.customize ["modifyvm", :id, "--memory", "6144"]
+      vb.customize ["modifyvm", :id, "--memory", "4096"]
     end
 
     master.vm.provision "ansible" do |ansible|
@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
 
     slave1.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--name", "slave1.locallab.com"]
-      vb.customize ["modifyvm", :id, "--memory", "4096"]
+      vb.customize ["modifyvm", :id, "--memory", "3072"]
     end
 
     slave1.vm.provision "ansible" do |ansible|
@@ -45,7 +45,7 @@ Vagrant.configure(2) do |config|
 
     slave2.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--name", "slave2.locallab.com"]
-      vb.customize ["modifyvm", :id, "--memory", "4096"]
+      vb.customize ["modifyvm", :id, "--memory", "3072"]
     end
 
     slave2.vm.provision "ansible" do |ansible|

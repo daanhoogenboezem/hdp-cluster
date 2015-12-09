@@ -26,3 +26,7 @@ Prior to working with this project, the following components should be installed
 - Make `master.locallab.com` the master node for all services, hit next.
 - Make `slave1.locallab.com` and `slave2.locallab.com` slaves for all services, hit next.
 - Accept suggestions during the `Customize services` and `Review` steps. Wait for Ambari to complete.
+
+# Verify setup
+- Step into directory `/usr/hdp/current/spark-client`
+- As the hdfs user, execute the command `./bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster --num-executors 3 --driver-memory 512m --executor-memory 512m --executor-cores 1 lib/spark-examples*.jar 10`

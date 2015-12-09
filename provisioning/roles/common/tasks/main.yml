@@ -14,6 +14,9 @@
 - name: Install nmap
   yum: state=present name=nmap
 
+- name: Install java
+  yum: state=present name=java-1.8.0-openjdk-headless.x86_64
+
 - name: start ntp deamon
   service: name=ntpd state=started
 

@@ -2,8 +2,8 @@
 Vagrant.configure(2) do |config|
 
   config.vm.define "master" do |master|
-    master.vm.box = "hdp_vm"
-    master.vm.network "forwarded_port", guest: 8080, host: 8080
+    master.vm.box = "CentOS-65-lab"
+    master.vm.box_url = "http://artifactory.lunatech.com/artifactory/vagrant-boxes-public/centos-6-5-x64-virtualbox.box"
     master.vm.hostname = "master.locallab.com"
     master.vm.network "private_network", ip: "192.168.100.10"
 
@@ -21,7 +21,8 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "slave1" do |slave1|
-    slave1.vm.box = "hdp_vm"
+    slave1.vm.box = "CentOS-65-lab"
+    slave1.vm.box_url = "http://artifactory.lunatech.com/artifactory/vagrant-boxes-public/centos-6-5-x64-virtualbox.box"
     slave1.vm.hostname = "slave1.locallab.com"
     slave1.vm.network "private_network", ip: "192.168.100.20"
 
@@ -39,7 +40,8 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "slave2" do |slave2|
-    slave2.vm.box = "hdp_vm"
+    slave2.vm.box = "CentOS-65-lab"
+    slave2.vm.box_url = "http://artifactory.lunatech.com/artifactory/vagrant-boxes-public/centos-6-5-x64-virtualbox.box"
     slave2.vm.hostname = "slave2.locallab.com"
     slave2.vm.network "private_network", ip: "192.168.100.30"
 

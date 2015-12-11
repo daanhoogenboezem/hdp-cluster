@@ -23,6 +23,12 @@
 - name: make ntp daemon start on boot
   shell: chkconfig ntpd on
 
+- name: start iptables deamon
+  service: name=iptables state=stopped
+
+- name: disable iptables on boot
+  shell: chkconfig iptables off
+
 - name: modify sysctl.conf
   lineinfile: dest=/etc/sysctl.conf line="net.ipv6.conf.all.disable_ipv6 = 1"
 

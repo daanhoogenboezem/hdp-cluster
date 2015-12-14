@@ -18,6 +18,7 @@ Prior to working with this project, the following components should be installed
 - Publish the resulting basebox to artifactory using the credentials that were provided to you, optionally updating the `box_url` paramaters in the `Vagrantfile`
 
 # Getting started
+- Install the `vagrant-vbguest` plugin by running `vagrant plugin install vagrant-vbguest`
 - Run `vagrant up` to spin up three vm's and have them bootstrapped.
 - Run `vagrant ssh master` to ssh into the master node.
 - Become root and run `ambari-server setup` to start the ambari setup process. When prompted, stick with the defaults.

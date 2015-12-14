@@ -23,7 +23,7 @@
 - name: make ntp daemon start on boot
   shell: chkconfig ntpd on
 
-- name: start iptables deamon
+- name: stop iptables deamon
   service: name=iptables state=stopped
 
 - name: disable iptables on boot
